@@ -1,0 +1,34 @@
+{
+  "name": "fsc-goal",
+  "version": "1.0.0",
+  "description": "FSC Goal - Modern Web Application built with HTML5, CSS3, and JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server",
+    "build": "echo 'Build completed'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "html5",
+    "css3",
+    "javascript",
+    "responsive",
+    "web-app",
+    "modern-ui"
+  ],
+  "author": "NguyenThai1705",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NguyenThai1705/FSC.git"
+  },
+  "homepage": "https://nguyenthai1705.github.io/FSC/",
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
