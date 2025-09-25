@@ -30,6 +30,9 @@
                         <a href="#funding" class="nav-link">Funding</a>
                     </li>
                     <li class="nav-item">
+                        <a href="#leaderboard" class="nav-link">Xếp hạng</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#services" class="nav-link">Dịch vụ</a>
                     </li>
                     <li class="nav-item">
@@ -145,8 +148,62 @@
                         <div class="progress-percentage" id="progressPercentage">0%</div>
                     </div>
                     <div class="funding-controls">
-                        <button class="funding-btn" id="addFunding">Thêm 100,000,000 VND</button>
+                        <button class="funding-btn" id="addFunding">Thêm 100,000,000 lượt</button>
                         <button class="funding-btn" id="resetFunding">Reset Funding</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="leaderboard-section">
+            <div class="container">
+                <h2>🏆 Bảng xếp hạng người đóng góp</h2>
+                <div class="leaderboard-container">
+                    <div class="contributor-form">
+                        <h3>Thêm đóng góp mới</h3>
+                        <form id="contributorForm" class="contributor-form-content">
+                            <div class="form-group">
+                                <input type="text" id="contributorName" name="name" placeholder="Tên người đóng góp" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="contributorAmount" name="amount" placeholder="Số lượt chia sẻ" min="1" required>
+                            </div>
+                            <button type="submit" class="submit-contributor-btn">Thêm đóng góp</button>
+                        </form>
+                    </div>
+                    
+                    <div class="leaderboard-table">
+                        <h3>Danh sách đóng góp</h3>
+                        <div class="table-container">
+                            <table class="contributors-table">
+                                <thead>
+                                    <tr>
+                                        <th>Hạng</th>
+                                        <th>Tên</th>
+                                        <th>Số lượt</th>
+                                        <th>Thời gian</th>
+                                        <th>Ngày</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="contributorsList">
+                                    <!-- Contributors will be added here dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="leaderboard-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Tổng đóng góp:</span>
+                                <span class="stat-value" id="totalContributions">0 lượt</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Số người đóng góp:</span>
+                                <span class="stat-value" id="totalContributors">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Đóng góp trung bình:</span>
+                                <span class="stat-value" id="averageContribution">0 lượt</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -225,6 +282,7 @@
                         <li><a href="#about">Giới thiệu</a></li>
                         <li><a href="#timer">Timer</a></li>
                         <li><a href="#funding">Funding</a></li>
+                        <li><a href="#leaderboard">Xếp hạng</a></li>
                         <li><a href="#services">Dịch vụ</a></li>
                         <li><a href="#contact">Liên hệ</a></li>
                     </ul>

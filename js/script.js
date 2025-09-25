@@ -12,6 +12,7 @@ function initializeApp() {
     setupNavbarScroll();
     setupTimer();
     setupFunding();
+    setupLeaderboard();
     console.log('FSC Goal Web App initialized successfully!');
 }
 
@@ -409,7 +410,8 @@ function updateTimerButtons() {
 
 // Funding Functionality
 let currentFunding = 0;
-const targetFunding = 10000000000; // 10,000,000 VND
+const targetFunding = 10000000000; // 10,000,000,000 lượt chia sẻ
+let contributors = [];
 
 function setupFunding() {
     const addBtn = document.getElementById('addFunding');
@@ -422,8 +424,32 @@ function setupFunding() {
 }
 
 function addFunding() {
-    currentFunding += 10000000; // Add 100,000 VND
+    // Prompt for contributor name
+    const contributorName = prompt('Nhập tên người đóng góp:');
+    if (!contributorName || contributorName.trim() === '') {
+        showNotification('Vui lòng nhập tên người đóng góp!', 'error');
+        return;
+    }
+
+    const amount = 100000000; // 100,000,000 lượt chia sẻ
+    currentFunding += amount;
+    
+    // Add contributor to list
+    const contributor = {
+        name: contributorName.trim(),
+        amount: amount,
+        timestamp: new Date(),
+        date: new Date().toLocaleDateString('vi-VN'),
+        time: new Date().toLocaleTimeString('vi-VN')
+    };
+    
+    contributors.push(contributor);
+    
+    // Sort contributors by amount (descending)
+    contributors.sort((a, b) => b.amount - a.amount);
+    
     updateFundingDisplay();
+    updateLeaderboard();
     
     // Add animation effect
     const progressFill = document.getElementById('progressFill');
@@ -433,11 +459,16 @@ function addFunding() {
             progressFill.style.transform = 'scale(1)';
         }, 200);
     }
+    
+    showNotification(`Cảm ơn ${contributorName} đã đóng góp ${formatNumber(amount)} lượt chia sẻ!`, 'success');
 }
 
 function resetFunding() {
     currentFunding = 0;
+    contributors = [];
     updateFundingDisplay();
+    updateLeaderboard();
+    showNotification('Đã reset tất cả dữ liệu funding!', 'info');
 }
 
 function updateFundingDisplay() {
@@ -462,6 +493,102 @@ function updateFundingDisplay() {
 
 function formatNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+// Leaderboard Functionality
+function setupLeaderboard() {
+    const contributorForm = document.getElementById('contributorForm');
+    
+    if (contributorForm) {
+        contributorForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleContributorSubmission();
+        });
+    }
+    
+    updateLeaderboard();
+}
+
+function handleContributorSubmission() {
+    const nameInput = document.getElementById('contributorName');
+    const amountInput = document.getElementById('contributorAmount');
+    
+    const name = nameInput.value.trim();
+    const amount = parseInt(amountInput.value);
+    
+    if (!name) {
+        showNotification('Vui lòng nhập tên người đóng góp!', 'error');
+        return;
+    }
+    
+    if (!amount || amount <= 0) {
+        showNotification('Vui lòng nhập số lượt chia sẻ hợp lệ!', 'error');
+        return;
+    }
+    
+    // Add to funding
+    currentFunding += amount;
+    
+    // Add contributor
+    const contributor = {
+        name: name,
+        amount: amount,
+        timestamp: new Date(),
+        date: new Date().toLocaleDateString('vi-VN'),
+        time: new Date().toLocaleTimeString('vi-VN')
+    };
+    
+    contributors.push(contributor);
+    contributors.sort((a, b) => b.amount - a.amount);
+    
+    // Update displays
+    updateFundingDisplay();
+    updateLeaderboard();
+    
+    // Clear form
+    nameInput.value = '';
+    amountInput.value = '';
+    
+    showNotification(`Cảm ơn ${name} đã đóng góp ${formatNumber(amount)} lượt chia sẻ!`, 'success');
+}
+
+function updateLeaderboard() {
+    const contributorsList = document.getElementById('contributorsList');
+    const totalContributions = document.getElementById('totalContributions');
+    const totalContributors = document.getElementById('totalContributors');
+    const averageContribution = document.getElementById('averageContribution');
+
+    if (!contributorsList) return;
+
+    // Clear existing rows
+    contributorsList.innerHTML = '';
+
+    // Add contributors to table
+    contributors.forEach((contributor, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="rank-cell">${index + 1}</td>
+            <td class="name-cell">${contributor.name}</td>
+            <td class="amount-cell">${formatNumber(contributor.amount)} lượt</td>
+            <td class="time-cell">${contributor.time}</td>
+            <td class="date-cell">${contributor.date}</td>
+        `;
+        contributorsList.appendChild(row);
+    });
+
+    // Update stats
+    if (totalContributions) {
+        totalContributions.textContent = `${formatNumber(currentFunding)} lượt`;
+    }
+    
+    if (totalContributors) {
+        totalContributors.textContent = contributors.length;
+    }
+    
+    if (averageContribution) {
+        const average = contributors.length > 0 ? Math.round(currentFunding / contributors.length) : 0;
+        averageContribution.textContent = `${formatNumber(average)} lượt`;
+    }
 }
 
 // Performance monitoring
