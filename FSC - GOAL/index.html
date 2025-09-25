@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSC Goal - Web App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>FSC Goal</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#timer" class="nav-link">Timer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#funding" class="nav-link">Funding</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link">Dịch vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Liên hệ</a>
+                    </li>
+                </ul>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Chào mừng đến với FSC Goala</h1>
+                    <p>Nền tảng web hiện đại với công nghệ tiên tiến</p>
+                    <button class="cta-button" onclick="scrollToSection('about')">Tìm hiểu thêm</button>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-placeholder">
+                        <span>🚀</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2>Về chúng tôi</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>FSC Goal là một dự án web application được phát triển với các công nghệ web hiện đại như HTML5, CSS3, và JavaScript ES6+. Chúng tôi cam kết mang đến trải nghiệm người dùng tốt nhất.</p>
+                        <ul class="features">
+                            <li>✅ Thiết kế responsive</li>
+                            <li>✅ Tốc độ tải nhanh</li>
+                            <li>✅ Giao diện thân thiện</li>
+                            <li>✅ Tương thích đa thiết bị</li>
+                        </ul>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>100+</h3>
+                            <p>Dự án hoàn thành</p>
+                        </div>
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Khách hàng hài lòng</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Năm kinh nghiệm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timer" class="timer-section">
+            <div class="container">
+                <h2>⏰ Bộ đếm thời gian</h2>
+                <div class="timer-container">
+                    <div class="timer-display">
+                        <div class="time-unit">
+                            <span class="time-value" id="days">00</span>
+                            <span class="time-label">Ngày</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-value" id="hours">00</span>
+                            <span class="time-label">Giờ</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-value" id="minutes">00</span>
+                            <span class="time-label">Phút</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-value" id="seconds">00</span>
+                            <span class="time-label">Giây</span>
+                        </div>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="timer-btn" id="startTimer">Bắt đầu</button>
+                        <button class="timer-btn" id="pauseTimer">Tạm dừng</button>
+                        <button class="timer-btn" id="resetTimer">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="funding" class="funding-section">
+            <div class="container">
+                <h2>💰 Thanh Funding</h2>
+                <div class="funding-container">
+                    <div class="funding-info">
+                        <div class="funding-amount">
+                            <span class="current-amount" id="currentAmount">0</span>
+                            <span class="currency">Lượt</span>
+                        </div>
+                        <div class="funding-target">
+                            <span>Mục tiêu: </span>
+                            <span class="target-amount" id="targetAmount">10,000,000,000</span>
+                            <span class="currency">Lượt chia sẻ</span>
+                        </div>
+                    </div>
+                    <div class="funding-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-percentage" id="progressPercentage">0%</div>
+                    </div>
+                    <div class="funding-controls">
+                        <button class="funding-btn" id="addFunding">Thêm 100,000,000 VND</button>
+                        <button class="funding-btn" id="resetFunding">Reset Funding</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Dịch vụ của chúng tôi</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💻</div>
+                        <h3>Phát triển Web</h3>
+                        <p>Xây dựng website và web application chuyên nghiệp với công nghệ hiện đại.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3>Responsive Design</h3>
+                        <p>Thiết kế giao diện tương thích với mọi thiết bị từ desktop đến mobile.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Tối ưu hóa</h3>
+                        <p>Tối ưu hóa tốc độ tải trang và hiệu suất website.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Liên hệ với chúng tôi</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Thông tin liên hệ</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>contact@fscgoal.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <span>+84 123 456 789</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Hà Nội, Việt Nam</span>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Họ và tên" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Tin nhắn" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Gửi tin nhắn</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FSC Goal</h3>
+                    <p>Nền tảng web hiện đại cho tương lai</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="#home">Trang chủ</a></li>
+                        <li><a href="#about">Giới thiệu</a></li>
+                        <li><a href="#timer">Timer</a></li>
+                        <li><a href="#funding">Funding</a></li>
+                        <li><a href="#services">Dịch vụ</a></li>
+                        <li><a href="#contact">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FSC Goal. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
